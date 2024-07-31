@@ -113,13 +113,14 @@ void Widget::on_pushButton_3_clicked()//清除
 
 void LoopSendThrend::run()
 {
+    QThread::msleep(1);
     m_buttonState=true;
     while(true)
     {
         m_mutex.lock();
         m_i++;
         ui->pushButton_2->click();
-        QTest::qSleep (ui->spinBox->value());
+        QThread::msleep(ui->spinBox->value());
         m_mutex.unlock();
     }
 }

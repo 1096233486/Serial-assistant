@@ -3,11 +3,11 @@
 
 #include <QWidget>
 #include <QMutex>
+#include <QDebug>
 #include <QSerialPort>//串口类
 #include <QSerialPortInfo>//串口信息类
 #include <QMessageBox>//弹窗
 #include <QDateTime>
-#include <QTest>
 #include <QThread>
 
 QT_BEGIN_NAMESPACE
@@ -24,17 +24,17 @@ public:
     Ui::Widget *ui;//这个ui在实例化与下方主Widget是同一地址，这样就可以在线程中操作ui内容
 
     void threadPause(){//暂停线程
-        qDebug()<<QString("pause :%1").arg(m_buttonState);
+        qDebug()<<QString("pause :%1").arg(m_buttonState)<<endl;
         this->m_mutex.lock();
         this->m_buttonState=false;
-        qDebug()<<QString("pause");
+        qDebug()<<QString("pause")<<endl;
     }
 
     void threadResume(){//继续线程
-        qDebug()<<QString("resume :%1").arg(m_buttonState);
+        qDebug()<<QString("resume :%1").arg(m_buttonState)<<endl;
         this->m_mutex.unlock();
         this->m_buttonState=true;
-        qDebug()<<QString("resume");
+        qDebug()<<QString("resume")<<endl;
     }
 
 private:
